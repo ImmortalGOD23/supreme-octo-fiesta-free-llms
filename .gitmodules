@@ -1,0 +1,15 @@
+[submodule "upstream/fcc"]
+	path = upstream/fcc
+	url = https://github.com/Alishahryar1/free-claude-code.git
+[submodule "upstream/cliproxyapi"]
+	path = upstream/cliproxyapi
+	url = https://github.com/router-for-me/CLIProxyAPI.git
+[submodule "upstream/9router"]
+	path = upstream/9router
+	url = https://github.com/decolua/9router.git
+[submodule "upstream/free-llm"]
+	path = upstream/free-llm
+	url = https://github.com/nejib1/Free-LLM.git
+[submodule "upstream/freellmapi"]
+	path = upstream/freellmapi
+	url = https://github.com/tashfeenahmed/freellmapi.git

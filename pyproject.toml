@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "super-fcc"
+version = "0.1.0"
+description = "Free Claude Code como núcleo de uma estação pessoal de IA"
+requires-python = ">=3.11"
+license = "AGPL-3.0-only"
+dependencies = []
+
+[project.scripts]
+super-fcc = "super_fcc.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

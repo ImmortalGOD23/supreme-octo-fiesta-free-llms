@@ -1,0 +1,42 @@
+name: super-fcc
+services:
+  cliproxyapi:
+    profiles: [gateways]
+    build: ./upstream/cliproxyapi
+    ports:
+      - "127.0.0.1:8317:8317"
+    volumes:
+      - ./.runtime/cliproxyapi.yaml:/CLIProxyAPI/config.yaml:ro
+      - ./.runtime/cliproxyapi-auth:/root/.cli-proxy-api
+    restart: unless-stopped
+  9router:
+    profiles: [gateways]
+    build: ./upstream/9router
+    ports:
+      - "127.0.0.1:20128:20128"
+    environment:
+      PORT: "20128"
+      HOSTNAME: "0.0.0.0"
+      DATA_DIR: /app/data
+      NEXT_TELEMETRY_DISABLED: "1"
+      INITIAL_PASSWORD: ${NINEROUTER_PASSWORD:?Execute init primeiro}
+      JWT_SECRET: ${NINEROUTER_JWT:?Execute init primeiro}
+      API_KEY_SECRET: ${NINEROUTER_API_SECRET:?Execute init primeiro}
+    volumes:
+      - ninerouter-data:/app/data
+    restart: unless-stopped
+  freellmapi:
+    profiles: [gateways]
+    build: ./upstream/freellmapi
+    ports:
+      - "127.0.0.1:3001:3001"
+    environment:
+      NODE_ENV: production
+      PORT: "3001"
+      ENCRYPTION_KEY: ${FREELLMAPI_ENCRYPTION_KEY:?Execute init primeiro}
+    volumes:
+      - freellmapi-data:/app/server/data
+    restart: unless-stopped
+volumes:
+  ninerouter-data:
+  freellmapi-data:
